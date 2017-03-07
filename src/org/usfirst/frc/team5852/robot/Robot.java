@@ -45,16 +45,14 @@ public class Robot extends IterativeRobot {
 
 	Joystick flightstick = new Joystick(0);
 
-	Joystick logCon = new Joystick(1);
-
 	// Buttons for Joysticks
 
 	int Yaxis = 1;
 	int Xaxis = 0;
 	int buttonA = 2;
 	int buttonY = 4;
-	int leftT = 7;
-	int rightT = 8;
+	int ForTrigger = 0;
+	int ReverseBut = 1;
 	int centerx = 320;
 	int centery = 240;
 	
@@ -68,8 +66,8 @@ public class Robot extends IterativeRobot {
 
 		chooser = new SendableChooser();
 		chooser.addDefault("No Auto", 1);
-		chooser.addObject("tripleR", 2);
-		chooser.addObject("lowbar", 3);
+		chooser.addObject("Forward & Gear", 2);
+		chooser.addObject("Gear & Cam", 3);
 		SmartDashboard.putData("Auto choices", chooser);
 		
 		NetworkTable.setIPAddress("10.58.52.2");
@@ -100,7 +98,7 @@ public class Robot extends IterativeRobot {
 		}else if (mode == 2)
 		{
 			
-			//Ramparts, Rock Wall, and Rough Terrain Autonomous
+			//Forward & Gear Autonomous
 			while (isAutonomous() && isEnabled())
 			{
 				//Approaches Obstacle at Half Speed
@@ -121,7 +119,7 @@ public class Robot extends IterativeRobot {
 			}
 		}else if (mode == 3)
 		{
-			//Low Bar Autonomous
+			//Gear & Cam Autonomous
 			while (isAutonomous() && isEnabled())
 			{
 
@@ -145,25 +143,25 @@ public class Robot extends IterativeRobot {
 			
 			//Timer.delay(0.1);
 
-			//Intake Commands: buttonY Intakes the Ball In, buttonA Outakes the Ball
-			if(logCon.getRawButton(buttonY))
+			/*Intake Commands: buttonY Intakes the Ball In, buttonA Outakes the Ball
+			if(flightstick.getRawButton(buttonY))
 			{
 				intake.set(1);
 			}
-			else if(logCon.getRawButton(buttonA))
+			else if(flightstick.getRawButton(buttonA))
 			{
 				intake.set(-1);
 			}
 			else
 			{
 				intake.set(0);
-			}
-			//Climber Commands: rightT winds the rope, leftT unwinds the rope
-			if(logCon.getRawButton(rightT))
+			}*/
+			//Climber Commands: ForTrigger winds the rope, ReverseBut unwinds the rope
+			if(flightstick.getRawButton(ForTrigger))
 			{
 				climber.set(1);
 			}
-			else if(logCon.getRawButton(leftT))
+			else if(flightstick.getRawButton(ReverseBut))
 			{
 				climber.set(-1);
 			}
