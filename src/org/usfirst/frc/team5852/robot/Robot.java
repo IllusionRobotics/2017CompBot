@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void robotInit() 
 	{
-		UsbCamera usbcam = new UsbCamera("USB0", 0);
+		/*UsbCamera usbcam = new UsbCamera("USB0", 0);
 		MjpegServer mserve = new MjpegServer("serv", 1181);
 		mserve.setSource(usbcam);
 		CvSink sink = new CvSink("cvcam0");
@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 		CvSource output = new CvSource("output", PixelFormat.kMJPEG,320,240,30);
 		
 		MjpegServer mjpg = new MjpegServer("mjp", 1182);
-		mjpg.setSource(output);
+		mjpg.setSource(output);*/
 
 		chooser = new SendableChooser();
 		chooser.addDefault("No Auto", 1);
@@ -113,7 +113,7 @@ public class Robot extends IterativeRobot {
 			//Baseline Autonomous
 			while (isAutonomous() && isEnabled())
 			{
-				//Approaches Baseline at Half Speed
+				//Approaches Baseline at 65% Speed
 				for (int i = 0; i < 200000; i++) 
 				{
 					drive.tankDrive(0.65, 0.65);
@@ -177,22 +177,7 @@ public class Robot extends IterativeRobot {
 		{
 			//Identifies the Drive Train Using the Flightstick
 			drive.arcadeDrive(-flightstick.getY(), -flightstick.getX());
-			
-			//Timer.delay(0.1);
 
-			/*Intake Commands: buttonY Intakes the Ball In, buttonA Outakes the Ball
-			if(flightstick.getRawButton(buttonY))
-			{
-				intake.set(1);
-			}
-			else if(flightstick.getRawButton(buttonA))
-			{
-				intake.set(-1);
-			}
-			else
-			{
-				intake.set(0);
-			}*/
 			//Climber Commands: ForTrigger winds the rope, ReverseBut unwinds the rope
 			if(flightstick.getRawButton(ForTrigger))
 			{
